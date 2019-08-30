@@ -1,10 +1,11 @@
 import styled from 'styled-components/native';
+import colors from '../../styles/colors';
 
 import logo from '../../assets/logo.png';
 
 export const Wrapper = styled.SafeAreaView`
   flex: 0.1;
-  background: #191920;
+  background: ${colors.dark};
   flex-direction: row;
 `;
 
@@ -38,7 +39,7 @@ export const ItemCount = styled.Text`
   right: -8px;
   min-width: 18px;
   min-height: 18px;
-  background: #7159c1;
+  background: ${colors.primary};
   color: #fff;
   font-size: 12px;
   padding: 2px;
