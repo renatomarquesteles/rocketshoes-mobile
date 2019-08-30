@@ -28,8 +28,8 @@ module.exports = {
     'import/prefer-default-export': 'off',
     'react/jsx-props-no-spreading': [
       {
-        html: 'enforce',
-        custom: 'enforce',
+        html: 1,
+        custom: 1,
         exceptions: ['Header'],
       },
     ],

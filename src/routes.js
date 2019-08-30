@@ -8,16 +8,14 @@ import Home from './pages/Home';
 const Routes = createAppContainer(
   createStackNavigator(
     {
-      Cart,
       Home,
+      Cart,
     },
     {
+      headerBackTitleVisible: false,
       defaultNavigationOptions: navigation => ({
         header: <Header {...navigation} />,
       }),
-      cardStyle: {
-        backgroundColor: '#191910',
-      },
     },
   ),
 );
