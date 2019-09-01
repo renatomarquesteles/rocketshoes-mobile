@@ -1,6 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {TouchableOpacity} from 'react-native';
+import PropTypes from 'prop-types';
 
 import {
   BasketContainer,
@@ -26,6 +27,13 @@ function Header({navigation, cartSize}) {
     </Wrapper>
   );
 }
+
+Header.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func,
+  }).isRequired,
+  cartSize: PropTypes.number.isRequired,
+};
 
 export default connect(
   state => ({

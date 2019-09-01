@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {FlatList} from 'react-native-gesture-handler';
 import {Image} from 'react-native';
+import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
@@ -86,6 +87,13 @@ class Home extends Component {
     );
   }
 }
+
+Home.propTypes = {
+  addToCartRequest: PropTypes.func.isRequired,
+  amount: PropTypes.shape({
+    amount: PropTypes.number,
+  }).isRequired,
+};
 
 const mapStateToProps = state => ({
   amount: state.cart.reduce((amount, product) => {
