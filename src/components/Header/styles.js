@@ -49,7 +49,7 @@ export const Logo = styled.Image.attrs({
 `;
 
 export const Wrapper = styled.SafeAreaView`
-  flex: 0.1;
+  flex: 0;
   background: ${colors.dark};
   flex-direction: row;
 `;
