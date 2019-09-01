@@ -8,19 +8,19 @@ import * as CartActions from '../../store/modules/cart/actions';
 
 import api from '../../services/api';
 import {formatPrice} from '../../util/format';
-import shoppingBasket from '../../assets/shopping-basket.png';
 
 import {
+  AddButton,
+  AddButtonText,
   Background,
+  CartIcon,
   Container,
   Product,
-  ProductImage,
-  ProductTitle,
-  ProductPrice,
-  AddButton,
   ProductAmount,
   ProductAmountText,
-  AddButtonText,
+  ProductImage,
+  ProductPrice,
+  ProductTitle,
 } from './styles';
 
 class Home extends Component {
@@ -59,7 +59,7 @@ class Home extends Component {
         <ProductPrice>{item.priceFormatted}</ProductPrice>
         <AddButton onPress={() => this.handleAddProduct(item.id)}>
           <ProductAmount>
-            <Image style={{width: 20, height: 20}} source={shoppingBasket} />
+            <CartIcon />
             <ProductAmountText>{amount[item.id] || 0}</ProductAmountText>
           </ProductAmount>
           <AddButtonText>ADICIONAR</AddButtonText>

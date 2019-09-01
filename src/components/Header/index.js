@@ -1,9 +1,14 @@
 import React from 'react';
-import {Image} from 'react-native';
 import {connect} from 'react-redux';
 
-import shoppingBasket from '../../assets/shopping-basket.png';
-import {BasketContainer, Container, ItemCount, Logo, Wrapper} from './styles';
+import {
+  BasketContainer,
+  CartIcon,
+  Container,
+  ItemCount,
+  Logo,
+  Wrapper,
+} from './styles';
 
 function Header({navigation, cartSize}) {
   return (
@@ -11,7 +16,7 @@ function Header({navigation, cartSize}) {
       <Container>
         <Logo />
         <BasketContainer onPress={() => navigation.navigate('Cart')}>
-          <Image style={{width: 24, height: 24}} source={shoppingBasket} />
+          <CartIcon />
           <ItemCount>{cartSize || 0}</ItemCount>
         </BasketContainer>
       </Container>

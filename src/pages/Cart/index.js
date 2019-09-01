@@ -1,36 +1,35 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import {Image} from 'react-native';
 import * as CartActions from '../../store/modules/cart/actions';
 
 import {formatPrice} from '../../util/format';
-import deleteForever from '../../assets/delete-forever.png';
-import removeCircleOutline from '../../assets/remove-circle-outline.png';
-import addCircleOutline from '../../assets/add-circle-outline.png';
-import removeShoppingCart from '../../assets/remove-shopping-cart.png';
 
 import {
   Container,
-  Products,
-  Product,
-  ProductInfo,
-  ProductImage,
-  ProductDetails,
-  ProductTitle,
-  ProductPrice,
-  ProductDelete,
-  ProductControls,
-  ProductControlButton,
-  ProductAmount,
-  ProductSubtotal,
-  TotalContainer,
-  TotalText,
-  TotalAmount,
-  Order,
-  OrderText,
+  EmptyCartIcon,
   EmptyContainer,
   EmptyText,
+  Order,
+  OrderText,
+  Product,
+  ProductAddIcon,
+  ProductAmount,
+  ProductControls,
+  ProductControlButton,
+  ProductDelete,
+  ProductDeleteIcon,
+  ProductDetails,
+  ProductImage,
+  ProductInfo,
+  ProductPrice,
+  ProductRemoveIcon,
+  Products,
+  ProductSubtotal,
+  ProductTitle,
+  TotalAmount,
+  TotalContainer,
+  TotalText,
 } from './styles';
 
 function Cart({
@@ -62,25 +61,16 @@ function Cart({
                     <ProductPrice>{product.priceFormatted}</ProductPrice>
                   </ProductDetails>
                   <ProductDelete onPress={() => removeFromCart(product.id)}>
-                    <Image
-                      style={{width: 24, height: 24}}
-                      source={deleteForever}
-                    />
+                    <ProductDeleteIcon />
                   </ProductDelete>
                 </ProductInfo>
                 <ProductControls>
                   <ProductControlButton onPress={() => decrement(product)}>
-                    <Image
-                      style={{width: 24, height: 24}}
-                      source={removeCircleOutline}
-                    />
+                    <ProductRemoveIcon />
                   </ProductControlButton>
                   <ProductAmount value={String(product.amount)} />
                   <ProductControlButton onPress={() => increment(product)}>
-                    <Image
-                      style={{width: 24, height: 24}}
-                      source={addCircleOutline}
-                    />
+                    <ProductAddIcon />
                   </ProductControlButton>
                   <ProductSubtotal>{product.subtotal}</ProductSubtotal>
                 </ProductControls>
@@ -97,7 +87,7 @@ function Cart({
         </>
       ) : (
         <EmptyContainer>
-          <Image style={{width: 64, height: 64}} source={removeShoppingCart} />
+          <EmptyCartIcon />
           <EmptyText>Seu carrinho está vazio.</EmptyText>
         </EmptyContainer>
       )}
