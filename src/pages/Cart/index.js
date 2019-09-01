@@ -1,7 +1,9 @@
 import React from 'react';
+import {FlatList} from 'react-native-gesture-handler';
+import PropTypes from 'prop-types';
+
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import PropTypes from 'prop-types';
 import * as CartActions from '../../store/modules/cart/actions';
 
 import {formatPrice} from '../../util/format';
@@ -31,6 +33,7 @@ import {
   TotalAmount,
   TotalContainer,
   TotalText,
+  Wrapper,
 } from './styles';
 
 function Cart({products, total, removeFromCart, updateAmountRequest}) {
@@ -42,35 +45,43 @@ function Cart({products, total, removeFromCart, updateAmountRequest}) {
     updateAmountRequest(product.id, product.amount + 1);
   }
 
+  renderProduct = ({item}) => {
+    return (
+      <Product>
+        <ProductInfo>
+          <ProductImage source={{uri: item.image}} />
+          <ProductDetails>
+            <ProductTitle>{item.title}</ProductTitle>
+            <ProductPrice>{item.priceFormatted}</ProductPrice>
+          </ProductDetails>
+          <ProductDelete onPress={() => removeFromCart(item.id)}>
+            <ProductDeleteIcon />
+          </ProductDelete>
+        </ProductInfo>
+        <ProductControls>
+          <ProductControlButton onPress={() => decrement(item)}>
+            <ProductRemoveIcon />
+          </ProductControlButton>
+          <ProductAmount value={String(item.amount)} />
+          <ProductControlButton onPress={() => increment(item)}>
+            <ProductAddIcon />
+          </ProductControlButton>
+          <ProductSubtotal>{item.subtotal}</ProductSubtotal>
+        </ProductControls>
+      </Product>
+    );
+  };
+
   return (
     <Container>
       {products.length ? (
-        <>
+        <Wrapper>
           <Products>
-            {products.map(product => (
-              <Product key={product.id}>
-                <ProductInfo>
-                  <ProductImage source={{uri: product.image}} />
-                  <ProductDetails>
-                    <ProductTitle>{product.title}</ProductTitle>
-                    <ProductPrice>{product.priceFormatted}</ProductPrice>
-                  </ProductDetails>
-                  <ProductDelete onPress={() => removeFromCart(product.id)}>
-                    <ProductDeleteIcon />
-                  </ProductDelete>
-                </ProductInfo>
-                <ProductControls>
-                  <ProductControlButton onPress={() => decrement(product)}>
-                    <ProductRemoveIcon />
-                  </ProductControlButton>
-                  <ProductAmount value={String(product.amount)} />
-                  <ProductControlButton onPress={() => increment(product)}>
-                    <ProductAddIcon />
-                  </ProductControlButton>
-                  <ProductSubtotal>{product.subtotal}</ProductSubtotal>
-                </ProductControls>
-              </Product>
-            ))}
+            <FlatList
+              data={products}
+              keyExtractor={item => String(item.id)}
+              renderItem={this.renderProduct}
+            />
           </Products>
           <TotalContainer>
             <TotalText>TOTAL</TotalText>
@@ -79,7 +90,7 @@ function Cart({products, total, removeFromCart, updateAmountRequest}) {
               <OrderText>FINALIZAR PEDIDO</OrderText>
             </Order>
           </TotalContainer>
-        </>
+        </Wrapper>
       ) : (
         <EmptyContainer>
           <EmptyCartIcon />

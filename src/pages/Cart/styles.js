@@ -136,3 +136,5 @@ export const TotalText = styled.Text`
   color: #999;
   font-weight: bold;
 `;
+
+export const Wrapper = styled.ScrollView``;

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {FlatList} from 'react-native-gesture-handler';
-import {Image} from 'react-native';
 import PropTypes from 'prop-types';
 
 import {connect} from 'react-redux';
