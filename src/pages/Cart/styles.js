@@ -45,6 +45,7 @@ export const Product = styled.View``;
 
 export const ProductAddIcon = styled(Icon).attrs({
   name: 'add-circle-outline',
+  color: colors.primary,
   size: 24,
 })``;
 
@@ -103,8 +104,10 @@ export const ProductPrice = styled.Text`
 
 export const ProductRemoveIcon = styled(Icon).attrs({
   name: 'remove-circle-outline',
+  color: colors.primary,
   size: 24,
 })``;
+
 export const Products = styled.View``;
 
 export const ProductSubtotal = styled.Text`

@@ -1,6 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import {StatusBar} from 'react-native';
+import FlashMessage from 'react-native-flash-message';
 
 import './config/ReactotronConfig';
 
@@ -11,10 +12,11 @@ import NavigationService from './services/navigation';
 const App = () => {
   return (
     <Provider store={store}>
-      <StatusBar barStyle="light-content" backgroundColor="#191920" />
+      <StatusBar barStyle="light-content" />
       <Routes
         ref={navigatorRef => NavigationService.setNavigator(navigatorRef)}
       />
+      <FlashMessage position="top" />
     </Provider>
   );
 };
